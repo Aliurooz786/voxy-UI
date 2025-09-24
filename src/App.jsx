@@ -1,21 +1,28 @@
+// src/App.jsx
 import { Routes, Route } from 'react-router-dom';
 import InterviewForm from './components/InterviewForm';
-import ResultsPage from './components/ResultsPage'; // We will create this next
-import './App.css'; 
+import Dashboard from './components/Dashboard';
+import Navbar from './components/Navbar';
+import HomePage from './components/HomePage';
+
+// Import MUI theme components
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import theme from './theme'; // Import our custom theme
 
 function App() {
   return (
-    <div className="app-container">
-      <header>
-        <h1>Voxy - AI Interview Agent</h1>
-      </header>
-      <main>
+    <ThemeProvider theme={theme}>
+      <CssBaseline /> {/* This applies a consistent baseline style */}
+      <>
+        <Navbar />
         <Routes>
-          <Route path="/" element={<InterviewForm />} />
-          <Route path="/results/:interviewId" element={<ResultsPage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/create" element={<InterviewForm />} />
         </Routes>
-      </main>
-    </div>
+      </>
+    </ThemeProvider>
   );
 }
 
